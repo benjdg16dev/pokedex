@@ -1,0 +1,22 @@
+@import "../../../assets/design.scss";
+
+.pokedex-header {
+  position: fixed;
+  top: 0;
+  height: $header-height;
+  width: 100%;
+  background-color: $primary;
+  box-shadow: $box-shadow;
+
+  .pokedex-header-segment-container {
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    .pokedex-header-segment {
+      width: 100%;
+    }
+  }
+}

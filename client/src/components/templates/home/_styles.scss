@@ -1,0 +1,63 @@
+@import "../../../assets/design.scss";
+
+.pokedex-home-template {
+  height: 100vh;
+  background: url("../../../assets/images/pokedex-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .pokedex-home-template-banner {
+    max-width: $max-width;
+    margin: 0 auto;
+    height: 100%;
+
+    .pokedex-home-template-hero {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+
+      .pokedex-home-template-title {
+        font-size: 96px;
+        font-weight: 600;
+        max-width: 624px;
+        line-height: 98px;
+        margin-bottom: 48px;
+      }
+
+      .pokedex-home-template-subtitle {
+        font-size: 48px;
+      }
+    }
+
+    .pokedex-scroll-down {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        background: none;
+        border: 0;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        animation: scrollDown 2s infinite;
+
+        img {
+          height: 12rem;
+          width: 12rem;
+
+          svg {
+            fill: white;
+          }
+        }
+      }
+    }
+  }
+}

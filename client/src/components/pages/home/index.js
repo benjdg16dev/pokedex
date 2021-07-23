@@ -1,15 +1,11 @@
 import React from "react";
 
-import Toggle from "../../atoms/toggle";
+import HomeTemplate from "../../templates/home";
 
-import Header from "../../organisms/header";
-
-const Home = () => {
+const HomePage = () => {
     return (
-        <div>
-            <Header />
-        </div>
-    )
+        <HomeTemplate />
+    );
 };
 
-export default Home;
+export default HomePage;

@@ -1,0 +1,27 @@
+.pokedex-dropdown-container {
+  display: flex;
+  flex-direction: column;
+
+  //   .pokedex-dropdown-label {
+  //     color: #7b8b8e;
+  //     font-weight: 600;
+  //     margin-bottom: 0.5rem;
+  //   }
+  .pokedex-dropdown-select {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 3px;
+    text-overflow: ellipsis;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:disabled {
+      background-color: #d9dadb;
+      cursor: not-allowed;
+    }
+  }
+}

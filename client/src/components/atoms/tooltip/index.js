@@ -66,7 +66,7 @@ const ToolTip = (props) => {
             onKeyUp={handleKeyUp}
         >
             <IconInfo 
-                fill={showToolTip ? "#7b8b8e" : "#FFFFFF"}
+                fill={showToolTip ? "#7b8b8e" : "#A70707"}
             />
             {
                 showToolTip ? (

@@ -1,24 +1,17 @@
 import React from "react";
 
-import ToolTip from "../tooltip";
+import LabelToolTip from "../label-tooltip";
 
 import "./_styles.scss";
 
 const InputBox = (props) => {
     return (
         <div className="pokedex-search-box">
-            <div className="pokedex-search-box-label">
-                <label
-                    className="pokedex-search-box-label-text"
-                    htmlFor={props.id}
-                    tabIndex="0"
-                >
-                    {props.label}
-                </label>
-                <ToolTip
-                    message={props.toolTipMessage}
-                />
-            </div>
+            <LabelToolTip
+                id={props.id}
+                label={props.label}
+                message={props.message}
+            />
             <input
                 id={props.id}
                 className="pokedex-search-box-input"

@@ -2,17 +2,6 @@
   display: flex;
   flex-direction: column;
 
-  .pokedex-search-box-label {
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-
-    .pokedex-search-box-label-text {
-      color: #7b8b8e;
-      font-weight: 600;
-    }
-  }
-
   .pokedex-search-box-input {
     padding: 0.75rem 1rem;
     font-size: 1rem;

@@ -1,0 +1,15 @@
+@import "../../../assets/design.scss";
+
+.pokedex-filterbar-container {
+  max-width: $max-width;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 32px 0;
+
+  .pokedex-search-box,
+  .pokedex-search-dropdown {
+    width: 100%;
+    margin-right: 32px;
+  }
+}

@@ -14,7 +14,8 @@ const FilterBar = () => {
     const { homeState, setHomeState } = useContext(HomeContext);
     const [pokemonSearchName, setPokemonSearchName] = useState();
     const [pokemonSearchType, setPokemonSearchType] = useState("All");
-    const [pokemonTypes, setPokemonTypes] = useState();
+    const [pokemonTypes, setPokemonTypes] = useState(null);
+    const [isPokemonTypesReady, setIsPokemonTypesReady] = useState(false);
 
     useEffect(() => {
         const dataArray = [];
@@ -31,6 +32,12 @@ const FilterBar = () => {
 
         setPokemonTypes(dataArray);
     }, []);
+
+    useEffect(() => {
+        if (pokemonTypes) {
+            setIsPokemonTypesReady(true);
+        }
+    }, [pokemonTypes])
 
     const handleSearchBoxChange = (e) => {
         setPokemonSearchName(e.target.value);
@@ -65,16 +72,16 @@ const FilterBar = () => {
                     name="Primary Type"
                     data={pokemonTypes}
                     onChange={handleSearchDropDownChange}
-                    // isLoading={!isLaunchPadsReady}
+                    isLoading={!isPokemonTypesReady}
                     hasDefaultOption
                     defaultOptionValue={"All"}
-                    // disabled={!isLaunchPadsReady}
+                    disabled={!isPokemonTypesReady}
                     message="Choose the Pokémon's main type here."
                 />
                 <Button 
                     onClick={handleSearchButtonClick}
                     name="Search"
-                    // disabled={(!isLaunchDataReady || !isLaunchPadsReady)}
+                    disabled={!isPokemonTypesReady}
                 />
             </div>
         </div>

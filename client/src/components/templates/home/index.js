@@ -4,9 +4,12 @@ import DownChevron from "../../../assets/svg/down-chevron.svg";
 
 import Header from "../../organisms/header";
 
+import SearchBox from "../../molecules/search-box";
+
 import "./_styles.scss";
 
 const HomeTemplate = () => {
+
     return (
         <div className="pokedex-home-template">
             <Header />
@@ -18,6 +21,13 @@ const HomeTemplate = () => {
                     <span className="pokedex-home-template-subtitle">
                         Professor Oak
                     </span>
+                    <SearchBox
+                        id="pokemon-name"
+                        type="search"
+                        placeholder="Pokémon name"
+                        label="Search Pokémon name"
+                        toolTipMessage="Input the Pokémon's name here."
+                    />
                 </div>
                 <div className="pokedex-scroll-down">
                     <button 

@@ -11,11 +11,11 @@ const Toggle = (props) => {
         if (props.value) {
             setToggleValue(props.value);
         }
-    }, []);
+    }, [props.value]);
 
-    useEffect(() => {
-        console.log(toggleValue);
-    }, [toggleValue]);
+    // useEffect(() => {
+    //     console.log(toggleValue);
+    // }, [toggleValue]);
 
     const handleChange = () => {
         setToggleValue(!toggleValue);

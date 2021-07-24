@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import { HomeContext } from "../../../contexts/HomeContext";
 
 import Button from "../../atoms/button";
 import SearchBox from "../../molecules/search-box";
@@ -9,7 +11,10 @@ import PokemonTypesJSON from "../../../utilities/pokemon-types.json";
 import "./_styles.scss";
 
 const FilterBar = () => {
-    const [pokemonTypes, setPokemonTypes] = useState()
+    const { homeState, setHomeState } = useContext(HomeContext);
+    const [pokemonSearchName, setPokemonSearchName] = useState();
+    const [pokemonSearchType, setPokemonSearchType] = useState("All");
+    const [pokemonTypes, setPokemonTypes] = useState();
 
     useEffect(() => {
         const dataArray = [];
@@ -27,6 +32,22 @@ const FilterBar = () => {
         setPokemonTypes(dataArray);
     }, []);
 
+    const handleSearchBoxChange = (e) => {
+        setPokemonSearchName(e.target.value);
+    };
+
+    const handleSearchDropDownChange = (e) => {
+        setPokemonSearchType(e.target.value);
+    };
+
+    const handleSearchButtonClick = () => {
+        setHomeState({
+            ...homeState,
+            pokemon_name: pokemonSearchName,
+            pokemon_type: pokemonSearchType
+        });
+    };
+
     return (
         <div className="pokedex-filterbar">
             <div className="pokedex-filterbar-container">
@@ -36,21 +57,22 @@ const FilterBar = () => {
                     placeholder="Pokémon name"
                     label="Search Pokémon name"
                     message="Input the Pokémon's name here."
+                    onChange={handleSearchBoxChange}
                 />
                 <SearchDropDown
                     id="pokedex-primary-type"
                     label="Pokémon Main Type"
                     name="Primary Type"
                     data={pokemonTypes}
-                    onChange={console.log()}
+                    onChange={handleSearchDropDownChange}
                     // isLoading={!isLaunchPadsReady}
-                    // hasDefaultOption
-                    defaultOptionValue={"normal"}
+                    hasDefaultOption
+                    defaultOptionValue={"All"}
                     // disabled={!isLaunchPadsReady}
                     message="Choose the Pokémon's main type here."
                 />
                 <Button 
-                    onClick={console.log("working")}
+                    onClick={handleSearchButtonClick}
                     name="Search"
                     // disabled={(!isLaunchDataReady || !isLaunchPadsReady)}
                 />

@@ -12,7 +12,7 @@ const DropDown = (props) => {
                         className="pokedex-dropdown-option"
                         id={value.id ? value.id : index}
                         key={index}
-                        value={value.id}
+                        value={value.value}
                     >
                         {value.value ? value.value : value}
                     </option>
@@ -23,7 +23,7 @@ const DropDown = (props) => {
                     {
                         props.hasDefaultOption
                             ? 
-                                <option value={props.defaultOptionValue.toString().toLowerCase()}>
+                                <option value={props.defaultOptionValue}>
                                     {props.defaultOptionValue}
                                 </option>
                             : ""

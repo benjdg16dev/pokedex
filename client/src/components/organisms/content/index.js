@@ -10,20 +10,25 @@ import "./_styles.scss";
 
 const Content = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [allStarterPokemon, setAllStarterPokemon] = useState();
-    const { homeState } = useContext(HomeContext);
-
-    useEffect(() => {
-        if (homeState) {
-            setIsLoading(false);
-        }
-    }, [homeState]);
+    const { homeState, setHomeState } = useContext(HomeContext);
 
     useEffect(() => {
         fetch("http://localhost:1100/pokemon")
             .then(response => response.json())
-            .then(data => setAllStarterPokemon(data.kanto_starter_pokemons));
+            .then(data => {
+                setHomeState(
+                    {...homeState,
+                        pokemon_data: data.kanto_starter_pokemons
+                    }
+                );
+            });
     }, []);
+
+    useEffect(() => {
+        if (homeState.pokemon_data) {
+            setIsLoading(false);
+        }
+    }, [homeState]);
 
     const notFoundMarkUp = () => {
         return (
@@ -43,19 +48,23 @@ const Content = () => {
 
     const loadStarterMarkUp = () => {
         let markUp = null;
-        if (allStarterPokemon) {
-            markUp = [];
-            allStarterPokemon.map((element, index) => {
-                markUp.push(
-                    <Card
-                        id={element.id}
-                        name={element.name}
-                        description={element.description}
-                        primary_type={element.primary_type}
-                        secondary_type={element.secondary_type}
-                    />
-                )
-            });
+        if (homeState.pokemon_data) {
+            if (homeState.pokemon_data.length) {
+                markUp = [];
+                homeState.pokemon_data.map((element, index) => {
+                    markUp.push(
+                        <Card
+                            id={element.id}
+                            name={element.name}
+                            description={element.description}
+                            primary_type={element.primary_type}
+                            secondary_type={element.secondary_type}
+                        />
+                    )
+                });
+            } else {
+                markUp = notFoundMarkUp();
+            }
         }
         return markUp;
     }
@@ -64,11 +73,12 @@ const Content = () => {
         <div className="pokedex-content">
             <div className="pokedex-content-container">
                 {
-                    isLoading && loaderMarkUp()
+                    isLoading ? loaderMarkUp() : (
+                        <div className="pokedex-content-card-container">
+                            {loadStarterMarkUp()}
+                        </div>
+                    )
                 }
-                <div className="pokedex-content-card-container">
-                {loadStarterMarkUp()}
-                </div>
             </div>
         </div>
     );

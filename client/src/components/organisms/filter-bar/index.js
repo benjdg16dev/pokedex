@@ -47,12 +47,46 @@ const FilterBar = () => {
         setPokemonSearchType(e.target.value);
     };
 
-    const handleSearchButtonClick = () => {
-        setHomeState({
-            ...homeState,
-            pokemon_name: pokemonSearchName,
-            pokemon_type: pokemonSearchType
+    const searchFilter = (data) => {
+        return data.filter((obj) => {
+            if (pokemonSearchName === "" || pokemonSearchName === undefined) {
+                return obj;
+            } else {
+                const keyword = pokemonSearchName.toString().toLowerCase();
+                if (obj.name.toString().toLowerCase().includes(keyword)) {
+                    return obj;
+                }
+            }
         });
+    };
+
+    const dropdownFilter = (data) => {
+        return data.filter((obj) => {
+            if (pokemonSearchType.toLowerCase() === "all") {
+                return obj;
+            } else {
+                const searchType = pokemonSearchType.toString().toLowerCase();
+                if (obj.primary_type.toString().toLowerCase() === searchType) {
+                    return obj;
+                }
+            }
+        });
+    };
+
+    const handleSearchButtonClick = () => {
+        // assuming data is changing; hence call
+        fetch("http://localhost:1100/pokemon")
+            .then(response => response.json())
+            .then(data => {
+                const searchFilterData = searchFilter(data.kanto_starter_pokemons);
+                const dropDownFilterData = dropdownFilter(searchFilterData);
+                setHomeState(
+                    {
+                        ...homeState,
+                        pokemon_data: dropDownFilterData
+                    }
+                );
+            });
     };
 
     return (

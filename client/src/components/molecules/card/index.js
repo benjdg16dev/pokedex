@@ -47,7 +47,7 @@ const Card = (props) => {
             default:
                 break;
         }
-    }, []);
+    }, [props.id]);
 
     const padZeroes = (num, size) => {
         num = num.toString();

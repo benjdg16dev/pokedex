@@ -6,8 +6,7 @@ import HomeTemplate from "../../templates/home";
 
 const HomePage = () => {
     const [homeState, setHomeState] = useState({
-        pokemon_name: "yoyo",
-        pokemon_type: "All"
+        pokemon_data: null
     });
 
     return (
